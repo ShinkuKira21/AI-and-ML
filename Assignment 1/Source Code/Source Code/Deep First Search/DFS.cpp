@@ -93,52 +93,105 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 
 		// Check up and down from left direction
 		Directions lastVDirection = EVertical;
-		if (size_t i = cPosition.x < config.height)
-			for (size_t j = cPosition.y; j != std::string::npos; j--)
+		size_t i = cPosition.x;
+		if (i < config.height)
+			for (size_t j = cPosition.y - 1; j != std::string::npos && config.file[config.width * i + j] != 42; j--)
 			{
 				// shows last direction vertically
-				
+				//
+				// locks the y-axis loop.
+				if (lastVDirection != EVertical) j++;
+
 				// check top
 				if (lastVDirection != EDown && i > 0 && config.file[config.width * (i - 1) + j] == 32)
 				{
+					if ((cPosition = Search(config, { 32, i - 1, j }, EHorizontal)).node != '\0')
+					{
+						cDirection = ChangeDirection(cDirection);
+						return cPosition;
+					}
 
-					if ((cPosition = Search(config, { 32, i-1, j }, EHorizontal)).node != '\0') return cPosition;
-					if(i < config.height) i++;
+					if (i - 1 != std::string::npos && config.file[config.width * (i - 1) + j] != 42)
+					{
+						i--;
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+					}
 					lastVDirection = EUp;
 					continue;
 				}
-					
 
-				// check bottom
-				if (lastVDirection != EUp && i + 1 < config.height && config.file[config.width * i + 1 + j] == 32)
-				{
-					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0') return cPosition;
-					if (i < config.height) i--;
-					lastVDirection = EDown;
-				}
-			}
-
-		// Check up and down from right direction
-		lastVDirection = EVertical;
-		if (size_t i = cPosition.x < config.height)
-			for (size_t j = cPosition.y; j < config.width; j++)
-			{
-				// check top
-				if (lastVDirection != EDown && i > 0 && config.file[config.width * (i - 1) + j] == 32)
-				{
-					if ((cPosition = Search(config, { 32, i - 1, j }, EHorizontal)).node != '\0') return cPosition;
-					i++;
-					lastVDirection = EUp;
-					continue;
-				}
+				if (lastVDirection == EUp && config.file[config.width * (i + 1) + j] == 42) return Search(config, { lastVDirection, 32, i + 1, j }, EUp);
 
 				// check bottom
 				if (lastVDirection != EUp && i + 1 < config.height && config.file[config.width * (i + 1) + j] == 32)
 				{
-					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0') return cPosition;
-					i--;
+					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0') 
+					{
+						cDirection = ChangeDirection(cDirection);
+						return cPosition;
+					}
+					if (i + 1 < config.height && config.file[config.width * (i + 1) + j] != 42)
+					{
+						i++;
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { lastVDirection, 32, i, j }, EVertical);
+					}
 					lastVDirection = EDown;
 				}
+
+				if (lastVDirection == EDown && config.file[config.width * (i + 1) + j] == 42) Search(config, { lastVDirection, 32, i + 1, j }, EDown);
+
+				if (config.file[config.width * (i + 1) + j] != 42) return { lastVDirection, config.file[config.width * (i + 1) + j], i + 1, j };
+			}
+
+		// Check up and down from right direction
+		lastVDirection = EVertical;
+		i = cPosition.x;
+		if (i < config.height)
+			for (size_t j = cPosition.y; j < config.width; j++)
+			{
+				// locks the y-axis loop.
+				if (lastVDirection != EVertical) j--;
+
+				// check top
+				if (lastVDirection != EDown && i > 0 && config.file[config.width * (i - 1) + j] == 32)
+				{
+					if ((cPosition = Search(config, { 32, i - 1, j }, EHorizontal)).node != '\0') 
+					{
+						cDirection = ChangeDirection(cDirection);
+						return cPosition;
+					}
+
+					if (i - 1 != std::string::npos && config.file[config.width * (i - 1) + j] != 42)
+					{
+						i--;
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+					}
+
+					lastVDirection = EUp;
+					continue;
+				}
+
+				if (lastVDirection == EUp && config.file[config.width * (i + 1) + j] == 42) Search(config, { 32, i + 1, j }, EUp);
+
+				// check bottom
+				if (lastVDirection != EUp && i + 1 < config.height && config.file[config.width * (i + 1) + j] == 32)
+				{
+					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0')
+					{
+						cDirection = ChangeDirection(cDirection);
+						return cPosition;
+					}
+
+					if (i + 1 < config.height && config.file[config.width * (i + 1) + j] != 42)
+					{
+						i++;
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+					}
+
+					lastVDirection = EDown;
+				}
+
+				if (config.file[config.width * (i + 1) + j] != 42 && config.file[config.width * (i + 1) + j] != 32) return { config.file[config.width * (i + 1) + j], i + 1, j };
 			}
 	}
 	

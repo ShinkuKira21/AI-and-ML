@@ -1,4 +1,5 @@
 #pragma once
+#include "DFS.h"
 #include <stack>
 
 namespace StackController
