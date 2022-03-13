@@ -6,16 +6,6 @@
 
 namespace DepthFirstSearch
 {
-	enum Directions
-	{
-		ELeft = 0,
-		ERight = 1,
-		EUp = 2,
-		EDown = 3,
-		EHorizontal = 4, // Designated for vague horizontal navigation
-		EVertical = 5 // Designated for vague vertical navigation
-	};
-
 	inline void DisplayContent(FileManager::Config config)
 	{
 		for (size_t i = 0; i < config.height; i++)
@@ -32,11 +22,12 @@ namespace DepthFirstSearch
 
 	// so the start logic does not need to obey direction.
 	// this makes it different to the NextCurrentObject Function.
-	StackController::Coordinates FindStartObject(FileManager::Config config);
+	StackController::Coordinates FindStartObject(FileManager::Config config, Directions currentDirection);
 	StackController::Coordinates NextCurrentObject(FileManager::Config config, StackController::Coordinates currentPosition, Directions* currentDirection);
 
 	StackController::Coordinates Search(FileManager::Config config, StackController::Coordinates currentPosition, Directions currentDirection);
 
+	Directions GetDirectional(Directions currentDirection);
 	Directions ChangeDirection(Directions currentDirection);
 
 }

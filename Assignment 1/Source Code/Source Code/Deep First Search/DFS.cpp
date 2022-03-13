@@ -33,6 +33,22 @@ void DepthFirstSearch::AllPathways(FileManager::Config config)
 		}
 }
 
+DepthFirstSearch::Directions DepthFirstSearch::GetDirectional(Directions currentDirection)
+{
+	switch (currentDirection)
+	{
+		case ERight :
+			return EHorizontal;
+
+		case ELeft :
+			return EHorizontal;
+
+		default:
+			return EVertical;
+	}
+}
+
+
 DepthFirstSearch::Directions DepthFirstSearch::ChangeDirection(Directions currentDirection)
 {
 	// The order is left first, if wall, then change to right, if right and wall, vertical is triggered.
@@ -67,7 +83,7 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 					break;
 
 				if (config.file[config.width * i + j] != 32)
-					return { config.file[config.width * i + j], i, j };
+					return { cDirection, config.file[config.width * i + j], i, j };
 			}
 				
 		// Change Direction
@@ -79,7 +95,7 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 					break;
 
 				if (config.file[config.width * i + j] != 32)
-					return { config.file[config.width * i + j], i, j };
+					return { cDirection, config.file[config.width * i + j], i, j };
 			}
 	}
 	else
@@ -92,7 +108,16 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 		// Find next way down
 
 		// Check up and down from left direction
-		Directions lastVDirection = EVertical;
+		Directions lastVDirection;
+		bool bHoldYRowP1 = false, bHoldYRowP2 = false;
+		if (GetDirectional(cPosition.pLastDirection) != EHorizontal)
+		{
+			bHoldYRowP1 = !bHoldYRowP1; // P1 != P2
+			lastVDirection = cPosition.pLastDirection;
+		}
+			
+		else lastVDirection = EVertical;
+		
 		size_t i = cPosition.x;
 		if (i < config.height)
 			for (size_t j = cPosition.y - 1; j != std::string::npos && config.file[config.width * i + j] != 42; j--)
@@ -100,12 +125,12 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 				// shows last direction vertically
 				//
 				// locks the y-axis loop.
-				if (lastVDirection != EVertical) j++;
+				if (lastVDirection != EVertical && bHoldYRowP1 == bHoldYRowP2) j++;
 
 				// check top
 				if (lastVDirection != EDown && i > 0 && config.file[config.width * (i - 1) + j] == 32)
 				{
-					if ((cPosition = Search(config, { 32, i - 1, j }, EHorizontal)).node != '\0')
+					if ((cPosition = Search(config, { lastVDirection, 32, i - 1, j }, EHorizontal)).node != '\0')
 					{
 						cDirection = ChangeDirection(cDirection);
 						return cPosition;
@@ -114,7 +139,7 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 					if (i - 1 != std::string::npos && config.file[config.width * (i - 1) + j] != 42)
 					{
 						i--;
-						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { lastVDirection, 32, i, j }, EVertical);
 					}
 					lastVDirection = EUp;
 					continue;
@@ -125,7 +150,7 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 				// check bottom
 				if (lastVDirection != EUp && i + 1 < config.height && config.file[config.width * (i + 1) + j] == 32)
 				{
-					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0') 
+					if ((cPosition = Search(config, { lastVDirection, 32, i + 1, j }, EHorizontal)).node != '\0') 
 					{
 						cDirection = ChangeDirection(cDirection);
 						return cPosition;
@@ -141,21 +166,33 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 				if (lastVDirection == EDown && config.file[config.width * (i + 1) + j] == 42) Search(config, { lastVDirection, 32, i + 1, j }, EDown);
 
 				if (config.file[config.width * (i + 1) + j] != 42) return { lastVDirection, config.file[config.width * (i + 1) + j], i + 1, j };
+
+				if (bHoldYRowP1 != bHoldYRowP2) bHoldYRowP2 = !bHoldYRowP2;
 			}
 
 		// Check up and down from right direction
-		lastVDirection = EVertical;
+		if (GetDirectional(cPosition.pLastDirection) != EHorizontal)
+		{
+			// this should help
+
+			lastVDirection = cPosition.pLastDirection;
+		}
+			
+		else lastVDirection = EVertical;
 		i = cPosition.x;
 		if (i < config.height)
 			for (size_t j = cPosition.y; j < config.width; j++)
 			{
 				// locks the y-axis loop.
-				if (lastVDirection != EVertical) j--;
+				// this used to be lastVDirection != EVertical
+				// However, when lastVDirection is set as cPosition.pLastDirection
+				// it will do it too early.
+				if (lastVDirection != EVertical && bHoldYRowP1 == bHoldYRowP2) j--;
 
 				// check top
 				if (lastVDirection != EDown && i > 0 && config.file[config.width * (i - 1) + j] == 32)
 				{
-					if ((cPosition = Search(config, { 32, i - 1, j }, EHorizontal)).node != '\0') 
+					if ((cPosition = Search(config, { lastVDirection, 32, i - 1, j }, EHorizontal)).node != '\0') 
 					{
 						cDirection = ChangeDirection(cDirection);
 						return cPosition;
@@ -164,19 +201,19 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 					if (i - 1 != std::string::npos && config.file[config.width * (i - 1) + j] != 42)
 					{
 						i--;
-						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { lastVDirection, 32, i, j }, EVertical);
 					}
 
 					lastVDirection = EUp;
 					continue;
 				}
 
-				if (lastVDirection == EUp && config.file[config.width * (i + 1) + j] == 42) Search(config, { 32, i + 1, j }, EUp);
+				if (lastVDirection == EUp && config.file[config.width * (i + 1) + j] == 42) Search(config, { lastVDirection, 32, i + 1, j }, EUp);
 
 				// check bottom
 				if (lastVDirection != EUp && i + 1 < config.height && config.file[config.width * (i + 1) + j] == 32)
 				{
-					if ((cPosition = Search(config, { 32, i + 1, j }, EHorizontal)).node != '\0')
+					if ((cPosition = Search(config, { lastVDirection, 32, i + 1, j }, EHorizontal)).node != '\0')
 					{
 						cDirection = ChangeDirection(cDirection);
 						return cPosition;
@@ -185,13 +222,19 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 					if (i + 1 < config.height && config.file[config.width * (i + 1) + j] != 42)
 					{
 						i++;
-						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { 32, i, j }, EVertical);
+						if (config.file[config.width * (i + 1) + j] == 42) return Search(config, { lastVDirection, 32, i, j }, EVertical);
 					}
 
 					lastVDirection = EDown;
 				}
 
-				if (config.file[config.width * (i + 1) + j] != 42 && config.file[config.width * (i + 1) + j] != 32) return { config.file[config.width * (i + 1) + j], i + 1, j };
+				if (config.file[config.width * (i + 1) + j] != 42 && config.file[config.width * (i + 1) + j] != 32) 
+				{
+					cDirection = ChangeDirection(cDirection);
+					return { lastVDirection, config.file[config.width * (i + 1) + j], i + 1, j };
+				}
+
+				if (bHoldYRowP1 != bHoldYRowP2) bHoldYRowP2 = !bHoldYRowP2;
 			}
 	}
 	
@@ -199,13 +242,13 @@ StackController::Coordinates DepthFirstSearch::Search(FileManager::Config config
 	return {};
 }
 
-StackController::Coordinates DepthFirstSearch::FindStartObject(FileManager::Config config)
+StackController::Coordinates DepthFirstSearch::FindStartObject(FileManager::Config config, Directions currentDirection)
 {
 	// Ascii to Text | 83 -> S
 	for (size_t i = 0; i < config.height; i++)
 		for (size_t j = 0; j < config.width; j++)
 			if (config.file[config.width * i + j] == 83)
-				return { 83, i, j };
+				return { currentDirection, 83, i, j };
 
 	// return empty directions
 	return {};

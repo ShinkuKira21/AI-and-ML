@@ -1,11 +1,27 @@
 #pragma once
-#include "DFS.h"
+
 #include <stack>
+
+// extends DFS - could be moved to another file but for now it stays!
+namespace DepthFirstSearch
+{
+	enum Directions
+	{
+		ELeft = 0,
+		ERight = 1,
+		EUp = 2,
+		EDown = 3,
+		EHorizontal = 4, // Designated for vague horizontal navigation
+		EVertical = 5 // Designated for vague vertical navigation
+	};
+}
 
 namespace StackController
 {
 	struct Coordinates
 	{
+		// previous last direction
+		DepthFirstSearch::Directions pLastDirection;
 		char node;
 		size_t x, y;
 	};

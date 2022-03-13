@@ -27,12 +27,12 @@ int main(int argc, char **argv)
 
 	// Once the start path is found, now find the next objects
 	manager.direction = DepthFirstSearch::ELeft;
-	AddToStack(&manager.positions, DepthFirstSearch::FindStartObject(config));
+	AddToStack(&manager.positions, DepthFirstSearch::FindStartObject(config, manager.direction));
 
  	if(manager.positions.top().node == 83)
 		while (!manager.positions.empty() && manager.positions.top().node != 70)
 		{
-			printf("N: %c X: %i | Y: %i | Direction Enum: %i\n", manager.positions.top().node, manager.positions.top().x, manager.positions.top().y, manager.direction);
+			printf("N: %c X: %i | Y: %i | Last Direction Enum: %i | Current Direction Enum: %i\n", manager.positions.top().node, manager.positions.top().x, manager.positions.top().y, manager.positions.top().pLastDirection, manager.direction);
 
 			StackController::Coordinates searchPosition;
 
