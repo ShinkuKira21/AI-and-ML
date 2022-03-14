@@ -12,7 +12,8 @@ namespace DepthFirstSearch
 		EUp = 2,
 		EDown = 3,
 		EHorizontal = 4, // Designated for vague horizontal navigation
-		EVertical = 5 // Designated for vague vertical navigation
+		EVertical = 5, // Designated for vague vertical navigation
+		EReset = 6 // Designated to reset the direction for the vertical check
 	};
 }
 

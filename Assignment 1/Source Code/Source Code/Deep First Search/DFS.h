@@ -25,7 +25,7 @@ namespace DepthFirstSearch
 	StackController::Coordinates FindStartObject(FileManager::Config config, Directions currentDirection);
 	StackController::Coordinates NextCurrentObject(FileManager::Config config, StackController::Coordinates currentPosition, Directions* currentDirection);
 
-	StackController::Coordinates Search(FileManager::Config config, StackController::Coordinates currentPosition, Directions currentDirection);
+	StackController::Coordinates Search(FileManager::Config config, StackController::Coordinates currentPosition, Directions currentDirection, bool bSpotCheck = false);
 
 	Directions GetDirectional(Directions currentDirection);
 	Directions ChangeDirection(Directions currentDirection);
