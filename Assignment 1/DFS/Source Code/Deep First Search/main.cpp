@@ -18,9 +18,21 @@ namespace Manager
 
 int main(int argc, char **argv)
 {
-	// !!! WHEN IT GETS TO B I NEED TO SOMEHOW RESET THE DIRECTIONAL AGAIN
+	// !!! WHEN IT GETS TO B I NEED TO SOMEHOW RESET THE DIRECTIONAL AGAIN (fixed)
+	std::string filename = ""; 
 
-	FileManager::Config config = FileManager::OpenFile(FileManager::FileSelector("m1.txt").c_str());
+	// enter m1.txt
+	std::cout << "Enter filename: ";
+	std::cin >> filename;
+
+	// If running outside of Visual Studio then the compiler may not understand that m1.txt exists in the content directory.
+	// Therefore, using an argument fixes this problem.
+
+	// Add 1 to the argument if "Unable to open file" error message raises and the file is located inside the content directory
+	bool previousDirectory;
+	argc > 0 && std::string(argv[argc-1]) == "1" ? previousDirectory = true : previousDirectory = false;
+
+	FileManager::Config config = FileManager::OpenFile(FileManager::FileSelector(filename.c_str(), previousDirectory).c_str());
 
 	Manager::Manager manager;
 	Manager::DisplayBoard(config);
@@ -35,7 +47,7 @@ int main(int argc, char **argv)
  	if(manager.positions.top().node == 83)
 		while (!manager.positions.empty())
 		{
-			printf("N: %c X: %i | Y: %i | Last Direction Enum: %i | Current Direction Enum: %i\n", manager.positions.top().node, manager.positions.top().x, manager.positions.top().y, manager.positions.top().pLastDirection, manager.direction);
+			printf("N: %c X: %li | Y: %li | Last Direction Enum: %i | Current Direction Enum: %i\n", manager.positions.top().node, manager.positions.top().x, manager.positions.top().y, manager.positions.top().pLastDirection, manager.direction);
 
 			if (manager.positions.top().node == 70) break;
 

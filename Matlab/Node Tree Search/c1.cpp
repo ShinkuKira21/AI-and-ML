@@ -69,12 +69,20 @@ void Search(char* text)
 	}
 }
 
+// parameter search
+void Search(char* text, int x, int y)
+{
+	std::cout << std::endl << text[WIDTH * x + y];
+	std::cout << std::endl;
+}
+
 int main() {
 	char text[WIDTH * HEIGHT];
 	
 	OpenFile("m1.txt", text);
 	DisplayContent(text);
 	Search(text);
+	Search(text, 1, 1);
 
 	return 0;
 }

@@ -14,8 +14,11 @@ namespace FileManager {
     };
 
     // More logic required here
-    inline std::string FileSelector(const char* filename)
-    { return Config().directory + (std::string)filename; }
+    inline std::string FileSelector(const char* filename, bool previousDirectory)
+    { 
+        if(previousDirectory) return "../" + std::string(Config().directory) + (std::string)filename;
+        return Config().directory + (std::string)filename; 
+    }
 
     // Dynamic Pointer Control
     inline char* CreateCharPtr(size_t size)
