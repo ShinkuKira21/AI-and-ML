@@ -2,7 +2,8 @@
 #include <vector>
 #include <time.h>
 #include <random>
-
+#include <iostream>
+#include <algorithm>
 // Math Tools
 namespace MTools {
     template <typename T>
@@ -15,8 +16,33 @@ namespace MTools {
     {
         std::random_device rd;
         std::mt19937 gen(rd());
-        const std::uniform_int_distribution distribution(range.x, range.y);
+        std::uniform_int_distribution<size_t> distribution(range.x, range.y);
         return distribution(gen);
+    }
+
+    template <typename T>
+    inline Vector2D<float> VMean(std::vector<Vector2D<T>> vecObjA, const Vector2D<T> vecB)
+    {
+        Vector2D<float> mean = {(float) vecB,(float) vecB};
+        vecObjA.push_back(vecB);
+        for_each(vecObjA.begin(), vecObjA.end(), [&mean](const Vector2D<size_t> item) {
+            mean.x += (float)item.x;
+            mean.y += (float)item.y;
+        });
+
+        mean.x /= 2;
+        mean.y /= 2;
+
+        return mean;
+    }
+
+     inline Vector2D<float> VMean(Vector2D<size_t> vecA, const Vector2D<size_t> vecB)
+    {
+        Vector2D<float> mean;
+        mean.x = (vecA.x + vecB.x) / 2;
+        mean.y = (vecA.y + vecB.y) / 2;
+
+        return mean;
     }
 }
 

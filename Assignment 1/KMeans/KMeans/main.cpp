@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     std::vector<MTools::Vector2D<float>> cogCluster = CTools::Generation::GenerateCOG(2, cluster);
 
     std::cout << "COG Clusters: " << std::endl;
-    for_each(cogCluster.begin(), cogCluster.end(), [] (MTools::Vector2D<float> obj) -> void { printf("x: %.f - y: %.f\n", obj.x, obj.y); });
+    for_each(cogCluster.begin(), cogCluster.end(), [] (MTools::Vector2D<float> obj) -> void { printf("x: %.2f - y: %.2f\n", obj.x, obj.y); });
 
     std::cout << std::endl;
 
