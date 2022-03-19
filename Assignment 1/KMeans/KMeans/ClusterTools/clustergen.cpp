@@ -7,7 +7,6 @@ std::vector<MTools::Vector2D<size_t>> CTools::Generation::GenerateCluster(const 
     for (size_t i = 0; i < nDataPoints; i++)
     {
         MTools::Vector2D<size_t> rndPoints({MTools::Randomize(rng), MTools::Randomize(rng)});
-        dataPoints.push_back({MTools::Randomize(rng), MTools::Randomize(rng)});
 
         // check that the random points are unique.
         bool found = false;

@@ -2,8 +2,8 @@
 #include <vector>
 #include <time.h>
 #include <random>
-#include <iostream>
 #include <algorithm>
+
 // Math Tools
 namespace MTools {
     template <typename T>
@@ -49,7 +49,8 @@ namespace MTools {
 
 // KMeans - Cluster Tools
 namespace CTools::KMeans {
-    std::vector<MTools::Vector2D<float>> KMeans(std::vector<MTools::Vector2D<size_t>> dataPoints, std::vector<MTools::Vector2D<float>> kClusterPoints);
+    bool KMeans(std::vector<std::vector<MTools::Vector2D<size_t>>> dataPoints, std::vector<MTools::Vector2D<float>> kClusterPoints);
+    int Assignment(MTools::Vector2D<size_t> point, std::vector<MTools::Vector2D<float>> kClusterPoints);
 }
 
 namespace CTools::Generation {
