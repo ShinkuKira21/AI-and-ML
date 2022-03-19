@@ -16,7 +16,7 @@ std::vector<MTools::Vector2D<size_t>> CTools::Generation::GenerateCluster(const 
             return false;
         });
 
-        if(!found ) dataPoints.push_back(rndPoints);
+        if(!found) dataPoints.push_back(rndPoints);
         else i--;
     }
 

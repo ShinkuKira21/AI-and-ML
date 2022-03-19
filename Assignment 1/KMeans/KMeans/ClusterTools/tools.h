@@ -54,7 +54,6 @@ namespace CTools::KMeans {
 
 namespace CTools::Generation {
     std::vector<MTools::Vector2D<size_t>> GenerateCluster(const size_t nClusters, const MTools::Vector2D<size_t> range);
-
     // Slightly different, checks that the CoG is not replacing a point
     std::vector<MTools::Vector2D<float>> GenerateCOG(const size_t kSize, const std::vector<MTools::Vector2D<size_t>> dataPoints);
 }
