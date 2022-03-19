@@ -49,7 +49,7 @@ namespace MTools {
 
 // KMeans - Cluster Tools
 namespace CTools::KMeans {
-    std::vector<MTools::Vector2D<float>> KMeans();
+    std::vector<MTools::Vector2D<float>> KMeans(std::vector<MTools::Vector2D<size_t>> dataPoints, std::vector<MTools::Vector2D<float>> kClusterPoints);
 }
 
 namespace CTools::Generation {

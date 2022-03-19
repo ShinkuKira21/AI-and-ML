@@ -25,15 +25,15 @@ std::vector<MTools::Vector2D<size_t>> CTools::Generation::GenerateCluster(const 
 
 std::vector<MTools::Vector2D<float>> CTools::Generation::GenerateCOG(const size_t kSize, const std::vector<MTools::Vector2D<size_t>> dataPoints)
 {
-    // This is not neccessary. However, if the K is chosen randomly, then it helps create a more random generation.
-    bool bLogicChange = true;
-    const size_t chance = MTools::Randomize({10, 20});
-    if(chance == 10 || chance == 15 || chance == 20) bLogicChange = true;
-
     const size_t max = dataPoints.size() - 1;
     std::vector<MTools::Vector2D<float>> kPoints;
     for(size_t i = 0; i < kSize; i++)
     {
+        // This is not neccessary. However, if the K is chosen randomly, then it helps create a more random generation.
+        bool bLogicChange = false;
+        const size_t chance = MTools::Randomize({10, 20});
+        if(chance < 15) bLogicChange = true;
+
     	MTools::Vector2D<size_t> rndPoints = dataPoints.at(MTools::Randomize({0, max}));
 
         // makes sure to get unique kPoints

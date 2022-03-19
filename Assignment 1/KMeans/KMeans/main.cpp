@@ -5,7 +5,7 @@
 int main(int argc, char** argv)
 {
     // constrain to (rng.y * rng.y) / 2  
-    MTools::Vector2D<size_t> dataRange({0, 9});
+    MTools::Vector2D<size_t> dataRange({1, 9});
     std::vector<MTools::Vector2D<size_t>> cluster = CTools::Generation::GenerateCluster(4, dataRange);
 
     std::cout << "Data Cluster: " << std::endl;
