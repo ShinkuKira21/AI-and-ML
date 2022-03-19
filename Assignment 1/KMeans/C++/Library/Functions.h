@@ -8,7 +8,7 @@ class Functions
 {
     protected:
 		// 0 = Windows, 1 = Linux
-		const int operatingSystemConf = 0;
+		const int operatingSystemConf = 1;
         std::stringstream stream;
         std::string uInput;
         char cInput;
@@ -40,7 +40,7 @@ class Functions
 
 			//Linux:
 			else
-				std::cout << "\033[2J";
+				system("clear");
         }
 
         char CharInput(std::string msg)
