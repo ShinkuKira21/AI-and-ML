@@ -15,7 +15,7 @@ namespace MTools {
     {
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<size_t> distribution(range.x, range.y);
+        const std::uniform_int_distribution distribution(range.x, range.y);
         return distribution(gen);
     }
 }
