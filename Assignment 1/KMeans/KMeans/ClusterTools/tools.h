@@ -21,7 +21,7 @@ namespace MTools {
     }
 
     template <typename T>
-    inline Vector2D<float> VMean(std::vector<Vector2D<T>> vecObjA, const Vector2D<T> vecB)
+    Vector2D<float> VMean(std::vector<Vector2D<T>> vecObjA, const Vector2D<T> vecB)
     {
         Vector2D<float> mean = {(float) vecB,(float) vecB};
         vecObjA.push_back(vecB);
@@ -36,11 +36,12 @@ namespace MTools {
         return mean;
     }
 
-     inline Vector2D<float> VMean(Vector2D<size_t> vecA, const Vector2D<size_t> vecB)
+    template <typename T>
+	Vector2D<float> VMean(Vector2D<T> vecA, const Vector2D<T> vecB)
     {
         Vector2D<float> mean;
-        mean.x = (vecA.x + vecB.x) / 2;
-        mean.y = (vecA.y + vecB.y) / 2;
+        mean.x = ((float)vecA.x + (float)vecB.x) / 2;
+        mean.y = ((float)vecA.y + (float)vecB.y) / 2;
 
         return mean;
     }

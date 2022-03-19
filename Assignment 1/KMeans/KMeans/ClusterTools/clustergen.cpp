@@ -34,7 +34,7 @@ std::vector<MTools::Vector2D<float>> CTools::Generation::GenerateCOG(const size_
     std::vector<MTools::Vector2D<float>> kPoints;
     for(size_t i = 0; i < kSize; i++)
     {
-        const MTools::Vector2D<size_t> rndPoints = dataPoints.at(MTools::Randomize({0, max}));
+    	MTools::Vector2D<size_t> rndPoints = dataPoints.at(MTools::Randomize({0, max}));
 
         // makes sure to get unique kPoints
         bool found = false;
@@ -46,7 +46,8 @@ std::vector<MTools::Vector2D<float>> CTools::Generation::GenerateCOG(const size_
 
         if(!found) {
             if(bLogicChange) {
-                kPoints.push_back(MTools::VMean(rndPoints, MTools::Randomize({0, max})));
+                MTools::Vector2D<size_t> rndPoints2 = dataPoints.at(MTools::Randomize({ 0, max }));
+                kPoints.push_back(VMean(rndPoints, rndPoints2));
             }
             else kPoints.push_back({(float)rndPoints.x, (float)rndPoints.y});
         }
