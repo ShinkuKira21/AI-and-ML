@@ -18,12 +18,10 @@ namespace Manager
 
 int main(int argc, char **argv)
 {
-	// !!! WHEN IT GETS TO B I NEED TO SOMEHOW RESET THE DIRECTIONAL AGAIN (fixed)
-	std::string filename = ""; 
+	// !!! WHEN IT GETS TO B I NEED TO SOMEHOW RESET THE DIRECTIONAL AGAIN (fixed) 
 
 	// enter m1.txt
-	std::cout << "Enter filename: ";
-	std::cin >> filename;
+	std::string filename = (Functions().TextInput("Enter filename: "));
 
 	// If running outside of Visual Studio then the compiler may not understand that m1.txt exists in the content directory.
 	// Therefore, using an argument fixes this problem.
