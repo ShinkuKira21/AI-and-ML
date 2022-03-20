@@ -21,18 +21,18 @@ namespace MTools {
         return distribution(gen);
     }
 
-    template <typename T>
-    Vector2D<float> VMean(std::vector<Vector2D<T>> vecObjA, const Vector2D<T> vecB)
+    template <typename T, typename S>
+    Vector2D<float> VMean(std::vector<Vector2D<T>> vecObjA, const Vector2D<S> vecB)
     {
-        Vector2D<float> mean = {(float) vecB,(float) vecB};
-        vecObjA.push_back(vecB);
+        Vector2D<float> mean = {(float) vecB.x,(float) vecB.y};
+       
         for_each(vecObjA.begin(), vecObjA.end(), [&mean](const Vector2D<size_t> item) {
             mean.x += (float)item.x;
             mean.y += (float)item.y;
         });
 
-        mean.x /= 2;
-        mean.y /= 2;
+        mean.x /= vecObjA.size()+1;
+        mean.y /= vecObjA.size()+1;
 
         return mean;
     }
@@ -57,7 +57,11 @@ namespace MTools {
 // KMeans - Cluster Tools
 namespace CTools::KMeans {
     bool KMeans(std::vector<std::vector<MTools::Vector2D<size_t>>>* clusterPoints, std::vector<MTools::Vector2D<float>>* kClusterPoints);
+
     int Assignment(MTools::Vector2D<size_t> point, std::vector<MTools::Vector2D<float>> kClusterPoints);
+
+    std::vector<MTools::Vector2D<float>> Recalculate(const std::vector<std::vector<MTools::Vector2D<size_t>>> clusterPoints, const std::vector<MTools::Vector2D<float>> kClusterPoints);
+
     bool CheckChange(std::vector<std::vector<MTools::Vector2D<size_t>>> memory, std::vector<std::vector<MTools::Vector2D<size_t>>> newClusters);
 }
 

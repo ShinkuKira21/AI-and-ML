@@ -30,7 +30,7 @@ bool CTools::KMeans::KMeans(std::vector<std::vector<MTools::Vector2D<size_t>>>* 
 	if(!(CTools::KMeans::CheckChange(memory, *clusterPoints))) return false;
 
 	// Recalculate k cluster points
-	
+	CTools::KMeans::Recalculate(*clusterPoints, *kClusterPoints);
 
 	return true;
 }
@@ -50,22 +50,52 @@ int CTools::KMeans::Assignment(MTools::Vector2D<size_t> point, std::vector<MTool
 	});
 
 	// returns as soon as it finds the first less than. 
+	size_t bestIndex = -1;
+	float smallestFloat = 256;
 	for(size_t i = 0; i < comparisons.size(); i++)
 	{ 
 		for(size_t j = 0; j < comparisons.size(); j++)
 		{
 			// if i == j skip to next point
-			if(comparisons.at(i) < comparisons.at(j))
+			if(smallestFloat != -1 && comparisons.at(i) < smallestFloat) bestIndex = i;
+
+			if(comparisons.at(i) < smallestFloat && comparisons.at(i) < comparisons.at(j))
 			{
 				std::cout << "Comparisons: \n";
 				printf("i: %li | j: %li | %.2f < %.2f: \n", i, j, comparisons.at(i), comparisons.at(j));
-				return i;
+				bestIndex = i;
+				smallestFloat = comparisons.at(i);
 			}
 				
 		}
 	}
 
-	return -1;
+	return bestIndex;
+}
+
+std::vector<MTools::Vector2D<float>> CTools::KMeans::Recalculate(const std::vector<std::vector<MTools::Vector2D<size_t>>> clusterPoints, const std::vector<MTools::Vector2D<float>> kClusterPoints)
+{
+	for(size_t i = 0; i < clusterPoints.size(); i++)
+	{
+		std::cout << "I: " << i << " | ";
+		for(size_t j = 0; j < clusterPoints[i].size(); j++)
+		{
+			printf("New CP X: %li, Y: %li\t", clusterPoints.at(i).at(j).x, clusterPoints.at(i).at(j).y);
+		}
+
+		std::cout << std::endl;
+	}
+
+
+	std::cout << "Recalculate Cluster Points:\n";
+	for(size_t i = 0; i < kClusterPoints.size(); i++)
+	{
+		MTools::Vector2D<float> test = MTools::VMean(clusterPoints.at(i), kClusterPoints.at(i));
+
+		printf("X: %.2f, Y: %.2f\n", test.x, test.y);
+	}
+
+	return kClusterPoints;
 }
 
 bool CTools::KMeans::CheckChange(std::vector<std::vector<MTools::Vector2D<size_t>>> memory, std::vector<std::vector<MTools::Vector2D<size_t>>> newClusters)

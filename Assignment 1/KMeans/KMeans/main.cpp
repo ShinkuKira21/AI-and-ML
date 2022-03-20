@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
     while(CTools::KMeans::KMeans(&dataCluster, &cogCluster))
     {
-        
+        break;
     }
 
     std::cout << std::endl;
