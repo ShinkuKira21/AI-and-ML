@@ -10,7 +10,7 @@ std::vector<MTools::Vector2D<size_t>> CTools::Generation::GenerateCluster(const 
 
         // check that the random points are unique.
         
-        const bool found = std::ranges::find_if(dataPoints.begin(), dataPoints.end(), [rndPoints](const MTools::Vector2D<size_t> point)-> bool {
+        const bool found = find_if(dataPoints.begin(), dataPoints.end(), [rndPoints](const MTools::Vector2D<size_t> point)-> bool {
             if(point.x == rndPoints.x && point.y == rndPoints.y) return true;
             return false;
         }) != dataPoints.end();
@@ -36,7 +36,7 @@ std::vector<MTools::Vector2D<float>> CTools::Generation::GenerateCOG(const size_
     	MTools::Vector2D<size_t> rndPoints = dataPoints.at(MTools::Randomize({0, max}));
 
         // makes sure to get unique kPoints
-        bool found = std::ranges::find_if(kPoints.begin(), kPoints.end(), [rndPoints](const MTools::Vector2D<float> point)->bool {
+        bool found = find_if(kPoints.begin(), kPoints.end(), [rndPoints](const MTools::Vector2D<float> point)->bool {
             if(point.x == rndPoints.x && point.y == rndPoints.y) return true;
             return false;
         }) != kPoints.end();
