@@ -23,9 +23,10 @@ int main(int argc, char** argv)
     // Tested the VectorDistance function - Works
     //std::cout << MTools::VectorDistance(MTools::Vector2D<float>({2.5, 6.0}), {9, 5}) << std::endl;
 
+    size_t i = 0;
     while(CTools::KMeans::KMeans(&dataCluster, &cogCluster))
     {
-        break;
+        std::cout << "\t\t\t\t\t\tLoop: " << i++;
     }
 
     std::cout << std::endl;

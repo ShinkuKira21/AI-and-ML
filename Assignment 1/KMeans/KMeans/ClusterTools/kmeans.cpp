@@ -52,28 +52,22 @@ int CTools::KMeans::Assignment(MTools::Vector2D<size_t> point, std::vector<MTool
 	// returns as soon as it finds the first less than.
 	// revised: checks all paths to find the closest k cluster
 	size_t bestIndex;
-	float smallestFloat = 256;
+	float smallestFloat = 256; // doesn't really have to be that big
 	for(size_t i = 0; i < comparisons.size(); i++)
-	{ 
 		for(size_t j = 0; j < comparisons.size(); j++)
-		{
 			if(comparisons.at(i) < smallestFloat && comparisons.at(i) < comparisons.at(j))
 			{
-				std::cout << "Comparisons: \n";
-				printf("i: %li | j: %li | %.2f < %.2f: \n", i, j, comparisons.at(i), comparisons.at(j));
 				bestIndex = i;
 				smallestFloat = comparisons.at(i);
 			}
-				
-		}
-	}
 
 	return bestIndex;
 }
 
 std::vector<MTools::Vector2D<float>> CTools::KMeans::Recalculate(const std::vector<std::vector<MTools::Vector2D<size_t>>> clusterPoints, const std::vector<MTools::Vector2D<float>> kClusterPoints)
 {
-	for(size_t i = 0; i < clusterPoints.size(); i++)
+	// displays the new clusterpoints
+	/*for(size_t i = 0; i < clusterPoints.size(); i++)
 	{
 		std::cout << "I: " << i << " | ";
 		for(size_t j = 0; j < clusterPoints[i].size(); j++)
@@ -82,18 +76,16 @@ std::vector<MTools::Vector2D<float>> CTools::KMeans::Recalculate(const std::vect
 		}
 
 		std::cout << std::endl;
-	}
+	}*/
 
-
-	std::cout << "Recalculate Cluster Points:\n";
+	//testing
+	//std::cout << "Recalculate Cluster Points:\n";
+	//printf("X: %.2f, Y: %.2f\n", test.x, test.y);
+	std::vector<MTools::Vector2D<float>> regeneration;
 	for(size_t i = 0; i < kClusterPoints.size(); i++)
-	{
-		MTools::Vector2D<float> test = VMean(clusterPoints.at(i), kClusterPoints.at(i));
+		regeneration.push_back(VMean(clusterPoints.at(i), kClusterPoints.at(i)));
 
-		printf("X: %.2f, Y: %.2f\n", test.x, test.y);
-	}
-
-	return kClusterPoints;
+	return regeneration;
 }
 
 bool CTools::KMeans::CheckChange(std::vector<std::vector<MTools::Vector2D<size_t>>> memory, std::vector<std::vector<MTools::Vector2D<size_t>>> newClusters)
