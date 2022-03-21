@@ -1,1 +1,1 @@
-g++ coms.cpp -shared -o KMeans.so
+g++ coms.cpp -shared -o KMeansMatlab.so
