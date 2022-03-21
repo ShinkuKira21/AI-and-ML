@@ -1,1 +1,1 @@
-extern "C" float FiveTimesThree();
+extern float FiveTimesThree();
