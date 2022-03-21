@@ -103,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,13 +143,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClusterTools\tools.h" />
-    <ClInclude Include="Communications\coms.h" />
     <ClInclude Include="Library\Functions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClusterTools\clustergen.cpp" />
     <ClCompile Include="ClusterTools\kmeans.cpp" />
-    <ClCompile Include="Communications\coms.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

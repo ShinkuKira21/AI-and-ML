@@ -57,7 +57,7 @@ namespace MTools {
 
     template <typename T, typename S>
     float VectorDistance(Vector2D<T> vecA, Vector2D<S> vecB)
-    { return sqrt(pow((float)vecA.x - (float)vecB.x, 2) + pow((float)vecA.y - (float)vecB.y, 2)); }
+    { return (float)sqrt(pow((float)vecA.x - (float)vecB.x, 2) + pow((float)vecA.y - (float)vecB.y, 2)); }
 }
 
 namespace MemoryTools

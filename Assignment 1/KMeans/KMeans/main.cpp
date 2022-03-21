@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ClusterTools/tools.h";
+#include "ClusterTools/tools.h"
 #include "Library/Functions.h"
 
 namespace MetadataHandler
@@ -25,7 +25,6 @@ int main(int argc, char** argv)
 
     std::cout << "Data Cluster: " << std::endl;
 	for_each(cluster.begin(), cluster.end(), [](MTools::Vector2D<size_t> obj) -> void { printf("student number: %s x: %li - y: %li\n", obj.metadata.c_str(), obj.x, obj.y); });
-
     // constrain k to less than cluster size / 2
     std::vector<MTools::Vector2D<float>> cogCluster = CTools::Generation::GenerateCOG(2, cluster);
 

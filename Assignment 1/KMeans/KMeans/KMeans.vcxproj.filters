@@ -19,12 +19,6 @@
     <Filter Include="Header Files\ClusterTools">
       <UniqueIdentifier>{3376fa6d-9868-4fe5-b0d0-bbfca6e2f21e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Communications">
-      <UniqueIdentifier>{4cfeb6c6-f007-40ed-894a-ecb322b3d1c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Communications">
-      <UniqueIdentifier>{1a48774c-dbce-4620-86fc-23e7a49cdad4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClusterTools\tools.h">
@@ -32,9 +26,6 @@
     </ClInclude>
     <ClInclude Include="Library\Functions.h">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Communications\coms.h">
-      <Filter>Header Files\Communications</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +37,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Communications\coms.cpp">
-      <Filter>Source Files\Communications</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
