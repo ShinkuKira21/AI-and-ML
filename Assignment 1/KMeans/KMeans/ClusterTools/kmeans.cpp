@@ -8,7 +8,7 @@ bool CTools::KMeans::KMeans(std::vector<std::vector<MTools::Vector2D<size_t>>>* 
 		// assign dataPoints to clusterPoints (spreadsheet)
 		// Calculate 
 	*/
-	std::vector memory(*clusterPoints);
+	std::vector<std::vector<MTools::Vector2D<size_t>>> memory(*clusterPoints);
 
 	// Clear memory from clusterPoints (initiating kClusterPoints structure and size)
 	clusterPoints->clear();
@@ -80,7 +80,7 @@ void CTools::KMeans::Recalculate(const std::vector<std::vector<MTools::Vector2D<
 	//testing
 	//std::cout << "Recalculate Cluster Points:\n";
 	//printf("X: %.2f, Y: %.2f\n", test.x, test.y);
-	const std::vector cpyKClusterPoints(*kClusterPoints);
+	const std::vector<MTools::Vector2D<float>> cpyKClusterPoints(*kClusterPoints);
 	kClusterPoints->clear();
 	for(size_t i = 0; i < cpyKClusterPoints.size(); i++)
 		kClusterPoints->push_back(VMean(clusterPoints.at(i), cpyKClusterPoints.at(i)));

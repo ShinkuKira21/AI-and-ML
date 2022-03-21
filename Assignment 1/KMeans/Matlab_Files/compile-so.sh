@@ -1,0 +1,1 @@
+g++ coms.cpp -shared -o KMeans.so
