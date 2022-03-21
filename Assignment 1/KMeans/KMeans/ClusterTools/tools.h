@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include <random>
 #include <math.h>
@@ -7,7 +8,16 @@
 namespace MTools {
     template <typename T>
     struct Vector2D {
+        std::string metadata;
         T x, y;
+
+        Vector2D() {}
+
+        Vector2D(T aX, T aY)
+        {
+            x = aX;
+            y = aY;
+        }
     };
 
     // Reference: https://www.cplusplus.com/reference/random/
@@ -47,9 +57,7 @@ namespace MTools {
 
     template <typename T, typename S>
     float VectorDistance(Vector2D<T> vecA, Vector2D<S> vecB)
-    {
-        return sqrt(pow((float)vecA.x - (float)vecB.x, 2) + pow((float)vecA.y - (float)vecB.y, 2));
-    }
+    { return sqrt(pow((float)vecA.x - (float)vecB.x, 2) + pow((float)vecA.y - (float)vecB.y, 2)); }
 }
 
 namespace MemoryTools
@@ -65,11 +73,11 @@ namespace MemoryTools
 namespace CTools::KMeans {
     bool KMeans(std::vector<std::vector<MTools::Vector2D<size_t>>>* clusterPoints, std::vector<MTools::Vector2D<float>>* kClusterPoints);
 
-    size_t Assignment(MTools::Vector2D<size_t> point, std::vector<MTools::Vector2D<float>> kClusterPoints);
+    int Assignment(MTools::Vector2D<size_t> point, std::vector<MTools::Vector2D<float>> kClusterPoints);
 
-    void Recalculate(std::vector<std::vector<MTools::Vector2D<size_t>>> clusterPoints, std::vector<MTools::Vector2D<float>>* kClusterPoints);
+    void Recalculate(const std::vector<std::vector<MTools::Vector2D<size_t>>> clusterPoints, std::vector<MTools::Vector2D<float>>* kClusterPoints);
 
-    bool CheckChange(std::vector<std::vector<MTools::Vector2D<size_t>>> memory, std::vector<std::vector<MTools::Vector2D<size_t>>> newClusters);
+    bool CheckChange(const std::vector<std::vector<MTools::Vector2D<size_t>>> memory, const std::vector<std::vector<MTools::Vector2D<size_t>>> newClusters);
 }
 
 namespace CTools::Generation {

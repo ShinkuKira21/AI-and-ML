@@ -55,7 +55,7 @@ std::vector<MTools::Vector2D<float>> CTools::Generation::GenerateCOG(const size_
     	MTools::Vector2D<size_t> rndPoints = dataPoints.at(MTools::Randomise({0, max}));
 
         // makes sure to get unique kPoints
-        bool found = find_if(kPoints.begin(), kPoints.end(), [rndPoints](const MTools::Vector2D<float> point)->bool {
+        const bool found = find_if(kPoints.begin(), kPoints.end(), [rndPoints](const MTools::Vector2D<float> point)->bool {
             if(point.x == rndPoints.x && point.y == rndPoints.y) return true;
             return false;
         }) != kPoints.end();
