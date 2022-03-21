@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "ClusterTools/tools.h"
 
 int main(int argc, char** argv)
@@ -29,6 +28,7 @@ int main(int argc, char** argv)
     {
         memory.push_back({ dataCluster, cogCluster });
         bIncomplete = CTools::KMeans::KMeans(&dataCluster, &cogCluster);
+        break;
     }
 
     std::cout << "Memory: " << std::endl;

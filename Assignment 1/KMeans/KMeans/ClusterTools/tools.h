@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <random>
-#include <algorithm>
 #include <math.h>
 
 // Math Tools
@@ -12,7 +11,7 @@ namespace MTools {
     };
 
     // Reference: https://www.cplusplus.com/reference/random/
-    inline size_t Randomize(Vector2D<size_t> range)
+    inline size_t Randomise(Vector2D<size_t> range)
     {
         std::random_device rd;
         std::mt19937 gen(rd());
