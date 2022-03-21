@@ -1,5 +1,5 @@
 #include "tools.h"
-#include <iostream>
+
 std::vector<MTools::Vector2D<size_t>> CTools::Generation::GenerateCluster(const size_t nDataPoints, const MTools::Vector2D<size_t> rng)
 {  
     std::vector<MTools::Vector2D<size_t>> dataPoints;
