@@ -1,1 +1,0 @@
-g++ coms.cpp -shared -o KMeansMatlab.so
