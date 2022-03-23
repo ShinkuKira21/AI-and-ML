@@ -1,5 +1,5 @@
 % Author(s): Edward Patch
-bLinux = true;
+bLinux = false;
 dir = "coms/";
 name = "coms";
 deflib = definecoms;

@@ -14,7 +14,7 @@
 	};
 
 	namespace CreateData {
-		EXPORT CMemory CreateCMemory(int size);
+		EXPORT int CreateCMemory(char name[], int size);
 	}
 
 #ifdef __cplusplus
