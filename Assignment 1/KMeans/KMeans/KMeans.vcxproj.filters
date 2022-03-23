@@ -19,6 +19,12 @@
     <Filter Include="Header Files\ClusterTools">
       <UniqueIdentifier>{3376fa6d-9868-4fe5-b0d0-bbfca6e2f21e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\CVSTools">
+      <UniqueIdentifier>{edf81d40-01f3-437a-9338-7f129b1fc0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CVSTools">
+      <UniqueIdentifier>{d9ca1af5-8efb-4d07-a054-a0f9e2408b33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClusterTools\tools.h">
@@ -26,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="Library\Functions.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CVSTools\CVSTools.h">
+      <Filter>Header Files\CVSTools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CVSTools\CVSTools.cpp">
+      <Filter>Source Files\CVSTools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

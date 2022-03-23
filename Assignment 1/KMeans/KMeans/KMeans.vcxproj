@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,11 +144,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClusterTools\tools.h" />
+    <ClInclude Include="CVSTools\CVSTools.h" />
     <ClInclude Include="Library\Functions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClusterTools\clustergen.cpp" />
     <ClCompile Include="ClusterTools\kmeans.cpp" />
+    <ClCompile Include="CVSTools\CVSTools.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

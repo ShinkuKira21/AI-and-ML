@@ -1,7 +1,7 @@
 #include "ClusterTools/tools.h"
 #include "CVSTools/CVSTools.h"
 #include "Library/Functions.h"
-
+#include <iostream>
 namespace MetadataHandler
 {
     void SetMetadata(std::vector<MTools::Vector2D<size_t>>* dataCluster)
@@ -10,16 +10,17 @@ namespace MetadataHandler
             dataCluster->at(i).metadata = Functions().TextInput("Enter student number for " + std::to_string(i) + ": ");
     }
 
-    MTools::Vector2D<size_t> SelectRange(bool bConstraint = false)
+    MTools::Vector2D<size_t> SelectRange()
     {
         // yeah this maybe a cheap way of doing it.
-        if(bConstraint == true)
-            std::cout << "Error: Range is less than zero, please try again.\n"; 
+        int val; MTools::Vector2D<size_t> rng;
+        bool bRecord = false, bool bError = false;
+		while(!bRecord)
+		{
 
-        int rng = (int)Functions().NumberInput("Enter range (0 => N): ");
-        if(rng < 0) rng = SelectRange(true).x;
-        if(bConstraint) return {(size_t)rng, 0};
-        return {(size_t)rng, SelectRange().y};
+            rng = (int)Functions().NumberInput("Enter range (0 => N): ");
+            if (rng < 0) bError = !bError;
+		}
     }
 }
 
