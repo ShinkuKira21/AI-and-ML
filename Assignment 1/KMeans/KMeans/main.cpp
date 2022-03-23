@@ -9,10 +9,24 @@ namespace MetadataHandler
         for (size_t i = 0; i < dataCluster->size(); i++)
             dataCluster->at(i).metadata = Functions().TextInput("Enter student number for " + std::to_string(i) + ": ");
     }
+
+    MTools::Vector2D<size_t> SelectRange(bool bConstraint = false)
+    {
+        // yeah this maybe a cheap way of doing it.
+        if(bConstraint == true)
+            std::cout << "Error: Range is less than zero, please try again.\n"; 
+
+        int rng = (int)Functions().NumberInput("Enter range (0 => N): ");
+        if(rng < 0) rng = SelectRange(true).x;
+        if(bConstraint) return {(size_t)rng, 0};
+        return {(size_t)rng, SelectRange().y};
+    }
 }
 
 int main(int argc, char** argv)
 {
+    MTools::Vector2D<size_t> v2d = MetadataHandler::SelectRange();
+    std::cout << v2d.x << "<XY>" << v2d.y << std::endl;
     std::vector<std::vector<MTools::Vector2D<size_t>>> dataCluster;
     
     // constrain to (rng.y * rng.y) / 2
