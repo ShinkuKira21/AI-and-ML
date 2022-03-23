@@ -10,29 +10,71 @@ namespace MetadataHandler
             dataCluster->at(i).metadata = Functions().TextInput("Enter student number for " + std::to_string(i) + ": ");
     }
 
-    MTools::Vector2D<size_t> SelectRange()
+    MTools::Vector2D<size_t> SelectCRange()
     {
         // yeah this maybe a cheap way of doing it.
         int val; MTools::Vector2D<size_t> rng;
-        bool bRecord = false, bool bError = false;
+        bool bRecord = false, bError = false;
 		while(!bRecord)
 		{
-
-            rng = (int)Functions().NumberInput("Enter range (0 => N): ");
-            if (rng < 0) bError = !bError;
+            if(bError) std::cout << "Error: Range is less than zero!\n";
+            val = (int)Functions().NumberInput("Enter range X (>=0): ");
+            if (val < 0) bError = true;
+            else bRecord = !bRecord;
+            Functions().ClearSystem();
 		}
+
+        rng.x = (size_t)val;
+        bRecord = !bRecord; bError = false;
+        while(!bRecord)
+        {
+            if(bError) std::cout << "Error: Range should be more than " << rng.x << "!\n";
+            val = (int)Functions().NumberInput("Enter range Y (>" + std::to_string(rng.x) + ") : ");
+            if (val <= (int)rng.x) bError = true;
+            else bRecord = !bRecord;
+            Functions().ClearSystem();
+        }
+
+        rng.y = (size_t)val;
+        return rng;
+    }
+
+    size_t SelectNClusters()
+    {
+        int val; bool bRecord = false, bError = false;
+		while(!bRecord)
+		{
+            if(bError) std::cout << "Error: Number of clusters has to be higher than zero!" << std::endl;
+            val = (int)Functions().NumberInput("Enter Number of Clusters (>0): ");
+            if (val <= 0) bError = true;
+            else bRecord = !bRecord;
+            Functions().ClearSystem();
+		}
+
+        return (size_t)val;
+    }
+
+    size_t SelectNKClusters(size_t ySize)
+    {
+        int val; bool bRecord = false, bError = false;
+		while(!bRecord)
+		{
+            if(bError) std::cout << "Error: Number of clusters has to be lower than " << ySize << "!" << std::endl;
+            val = (int)Functions().NumberInput("Enter Number of K Clusters (<"+std::to_string(ySize)+"): ");
+            if (val >= (int)ySize) bError = true;
+            else bRecord = !bRecord;
+		}
+
+        return (size_t)val;
     }
 }
 
 int main(int argc, char** argv)
-{
-    MTools::Vector2D<size_t> v2d = MetadataHandler::SelectRange();
-    std::cout << v2d.x << "<XY>" << v2d.y << std::endl;
+{   
     std::vector<std::vector<MTools::Vector2D<size_t>>> dataCluster;
-    
     // constrain to (rng.y * rng.y) / 2
-    MTools::Vector2D<size_t> dataRange({1, 9});
-    std::vector<MTools::Vector2D<size_t>> cluster = CTools::Generation::GenerateCluster(2, dataRange);
+    MTools::Vector2D<size_t> dataRange(MetadataHandler::SelectCRange());
+    std::vector<MTools::Vector2D<size_t>> cluster = CTools::Generation::GenerateCluster(MetadataHandler::SelectNClusters(), dataRange);
     MetadataHandler::SetMetadata(&cluster);
     dataCluster.push_back(cluster);
 
@@ -41,7 +83,7 @@ int main(int argc, char** argv)
     std::cout << "Data Cluster: " << std::endl;
 	for_each(cluster.begin(), cluster.end(), [](MTools::Vector2D<size_t> obj) -> void { printf("student number: %s x: %li - y: %li\n", obj.metadata.c_str(), obj.x, obj.y); });
     // constrain k to less than cluster size / 2
-    std::vector<MTools::Vector2D<float>> cogCluster = CTools::Generation::GenerateCOG(2, cluster);
+    std::vector<MTools::Vector2D<float>> cogCluster = CTools::Generation::GenerateCOG(MetadataHandler::SelectNKClusters(dataRange.y), cluster);
 
     std::cout << std::endl << "COG Clusters: " << std::endl;
     for_each(cogCluster.begin(), cogCluster.end(), [] (MTools::Vector2D<float> obj) -> void { printf("x: %.2f - y: %.2f\n", obj.x, obj.y); });
