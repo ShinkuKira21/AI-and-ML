@@ -1,5 +1,5 @@
-#include <iostream>
 #include "ClusterTools/tools.h"
+#include "CVSTools/CVSTools.h"
 #include "Library/Functions.h"
 
 namespace MetadataHandler
@@ -14,10 +14,10 @@ namespace MetadataHandler
 int main(int argc, char** argv)
 {
     std::vector<std::vector<MTools::Vector2D<size_t>>> dataCluster;
-
+    
     // constrain to (rng.y * rng.y) / 2
     MTools::Vector2D<size_t> dataRange({1, 9});
-    std::vector<MTools::Vector2D<size_t>> cluster = CTools::Generation::GenerateCluster(10, dataRange);
+    std::vector<MTools::Vector2D<size_t>> cluster = CTools::Generation::GenerateCluster(2, dataRange);
     MetadataHandler::SetMetadata(&cluster);
     dataCluster.push_back(cluster);
 
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
         memory.push_back({ dataCluster, cogCluster });
         bIncomplete = CTools::KMeans::KMeans(&dataCluster, &cogCluster);
     }
-
+    
     std::cout << "Memory: " << std::endl;
     for_each(memory.begin(), memory.end(), [] (const MemoryTools::Memory memoryItem) {
         for(size_t i = 0; i < memoryItem.cPoints.size(); i++)
@@ -54,6 +54,48 @@ int main(int argc, char** argv)
             std::cout << std::endl;
         }
     });
+
+    // Matlab Data Visualisation //
+    // Create CVS for COGs
+    CVSTools::CVSProperties* properties = new CVSTools::CVSProperties();
+    properties->col = 4;
+    properties->headings = new std::string[4] {"D", "K", "X", "Y"};
+    CVSTools::CVSHandler* cvs = new CVSTools::CVSHandler(properties, {"../KMeansMatlab/cvs/", "KCluster"});
+    
+    for(size_t i = 0; i < memory.size(); i++) 
+        for(size_t j = 0; j < memory[i].cPoints.size(); j++)
+        {
+            cvs->CVSParser(0, std::to_string(i).c_str());
+            cvs->CVSParser(1, std::to_string(j).c_str());
+            cvs->CVSParser(2, std::to_string(memory[i].kPoints[j].x).c_str());
+            cvs->CVSParser(3, std::to_string(memory[i].kPoints[j].y).c_str());
+        }
+    cvs->CVSStart();
+    delete cvs;
+    std::cout << "Generating KCluster Data Files for Matlab..." << std::endl;
+
+    // Create CVS for ClusterPoints
+    properties = new CVSTools::CVSProperties();
+    properties->col = 4;
+    properties->headings = new std::string[4] {"C", "Student Number", "X", "Y"};
+
+    cvs = new CVSTools::CVSHandler(properties, {"../KMeansMatlab/cvs/", "Cluster"});
+    
+    for(size_t i = 0; i < memory.size(); i++) 
+        for(size_t j = 0; j < memory[i].cPoints.size(); j++)
+        {
+            for(size_t k = 0; k < memory[i].cPoints[j].size(); k++)
+            {
+                cvs->CVSParser(0, std::to_string(j).c_str());
+                cvs->CVSParser(1, memory[i].cPoints[j][k].metadata.c_str());
+                cvs->CVSParser(2, std::to_string(memory[i].cPoints[j][k].x).c_str());
+                cvs->CVSParser(3, std::to_string(memory[i].cPoints[j][k].y).c_str());
+            }
+            
+        }
+    cvs->CVSStart();
+    delete cvs;
+    std::cout << "Generated Necessary Data Files for Matlab:" << std::endl << "Go to the KMeansMatlab folder and open KMeans Matlab application";
 
     std::cout << std::endl;
 
