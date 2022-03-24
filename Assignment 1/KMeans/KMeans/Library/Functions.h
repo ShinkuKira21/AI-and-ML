@@ -8,7 +8,7 @@ class Functions
 {
     protected:
 		// 0 = Windows, 1 = Linux
-		const int operatingSystemConf = 1;
+		const int operatingSystemConf = 0;
         std::stringstream stream;
         std::string uInput;
         char cInput;

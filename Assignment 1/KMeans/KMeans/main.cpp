@@ -81,7 +81,7 @@ int main(int argc, char** argv)
     Functions().ClearSystem();
 
     std::cout << "Data Cluster: " << std::endl;
-	for_each(cluster.begin(), cluster.end(), [](MTools::Vector2D<size_t> obj) -> void { printf("student number: %s x: %li - y: %li\n", obj.metadata.c_str(), obj.x, obj.y); });
+	for_each(cluster.begin(), cluster.end(), [](MTools::Vector2D<size_t> obj) -> void { printf("student number: %s x: %zi - y: %zi\n", obj.metadata.c_str(), obj.x, obj.y); });
     // constrain k to less than cluster size / 2
     std::vector<MTools::Vector2D<float>> cogCluster = CTools::Generation::GenerateCOG(MetadataHandler::SelectNKClusters(dataRange.y), cluster);
 
@@ -103,7 +103,7 @@ int main(int argc, char** argv)
     for_each(memory.begin(), memory.end(), [] (const MemoryTools::Memory memoryItem) {
         for(size_t i = 0; i < memoryItem.cPoints.size(); i++)
         {
-            printf("\t\tK: %li | X: %.2f | Y: %.2f\n", i, memoryItem.kPoints[i].x, memoryItem.kPoints[i].y);
+            printf("\t\tK: %zi | X: %.2f | Y: %.2f\n", i, memoryItem.kPoints[i].x, memoryItem.kPoints[i].y);
             for(size_t j = 0; j < memoryItem.cPoints[i].size(); j++)
             {
                std::cout << "C: " << j << " | Student Number: " << memoryItem.cPoints[i][j].metadata << " | X: " << memoryItem.cPoints[i][j].x << " | Y: " << memoryItem.cPoints[i][j].y << std::endl;
@@ -133,8 +133,8 @@ int main(int argc, char** argv)
 
     // Create CVS for ClusterPoints
     properties = new CVSTools::CVSProperties();
-    properties->col = 4;
-    properties->headings = new std::string[4] {"C", "Student Number", "X", "Y"};
+    properties->col = 5;
+    properties->headings = new std::string[5] {"D", "K", "Student Number", "X", "Y"};
 
     cvs = new CVSTools::CVSHandler(properties, {"../KMeansMatlab/cvs/", "Cluster"});
     
@@ -143,10 +143,11 @@ int main(int argc, char** argv)
         {
             for(size_t k = 0; k < memory[i].cPoints[j].size(); k++)
             {
-                cvs->CVSParser(0, std::to_string(j).c_str());
-                cvs->CVSParser(1, memory[i].cPoints[j][k].metadata.c_str());
-                cvs->CVSParser(2, std::to_string(memory[i].cPoints[j][k].x).c_str());
-                cvs->CVSParser(3, std::to_string(memory[i].cPoints[j][k].y).c_str());
+                cvs->CVSParser(0, std::to_string(i).c_str());
+                cvs->CVSParser(1, std::to_string(j).c_str());
+                cvs->CVSParser(2, memory[i].cPoints[j][k].metadata.c_str());
+                cvs->CVSParser(3, std::to_string(memory[i].cPoints[j][k].x).c_str());
+                cvs->CVSParser(4, std::to_string(memory[i].cPoints[j][k].y).c_str());
             }
             
         }

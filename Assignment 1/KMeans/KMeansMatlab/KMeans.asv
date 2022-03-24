@@ -1,0 +1,18 @@
+kcluster = readtable("cvs/KCluster.csv");
+
+depth = unique(kcluster.D);
+
+dIndex = kcluster{:, "D"};
+kindex = kcluster{:,"K"};
+x = kcluster{:, "X"};
+y = kcluster{:, "Y"};
+
+
+
+for i = 1:size(dIndex, 1)
+    for j = 1:size(depth, 1) 
+        if karr(i, 1) == j
+            Z
+        end
+    end
+end
