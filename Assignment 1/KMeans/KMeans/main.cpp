@@ -134,7 +134,7 @@ int main(int argc, char** argv)
     // Create CVS for ClusterPoints
     properties = new CVSTools::CVSProperties();
     properties->col = 5;
-    properties->headings = new std::string[5] {"D", "K", "Student Number", "X", "Y"};
+    properties->headings = new std::string[5] {"D", "K", "StudentNumber", "X", "Y"};
 
     cvs = new CVSTools::CVSHandler(properties, {"../KMeansMatlab/cvs/", "Cluster"});
     
