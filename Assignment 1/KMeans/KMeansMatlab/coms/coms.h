@@ -10,11 +10,12 @@
 	extern "C" {
 #endif
 	struct CMemory {
+		char name*;
 		int value;
 	};
 
 	namespace CreateData {
-		EXPORT int CreateCMemory(char name[], int size);
+		EXPORT CMemory CreateCMemory(char *name, int size);
 	}
 
 #ifdef __cplusplus

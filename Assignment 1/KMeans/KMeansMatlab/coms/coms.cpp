@@ -1,6 +1,8 @@
 #include "coms.h"
 
-int CreateCMemory(const char* name, int size)
+CMemory CreateData::CreateCMemory(char *name, int size)
 {
-	return size;
+    CMemory test({name, size});
+
+    return test;
 }
