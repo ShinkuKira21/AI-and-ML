@@ -35,5 +35,17 @@ for i = 1:size(cDIndex, 1)
     end
 end
 
+combination = cluster;
+colours = string.empty;
+for i = 1:size(combination, 1)
+    colours(i) = "Yellow";
+end
 
+for i = 1:size(cog, 1)
+    colours(size(combination, 1) + 1) = "Magenta";
+    combination(size(combination, 1) + 1, :) = cog(i, :);
+end
 
+for i = 1:size(combination, 1)
+   scatter(app.KMeansScatter, combination(i,1), combination(i,2), 36, colours(i),"filled");
+end
