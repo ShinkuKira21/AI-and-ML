@@ -1,0 +1,119 @@
+Enter filename: m1.txt
+Enter Node to Find (Char): E
+***********
+*S    A   *
+***** *****
+*C*       *
+* ******* *
+* *       *
+* ** ******
+* *B     D*
+* **** ** *
+*E       F*
+**********
+N: S X: 1 | Y: 1 | Last Direction Enum: 0 | Current Direction Enum: 0
+N: A X: 1 | Y: 6 | Last Direction Enum: 1 | Current Direction Enum: 1
+N: S X: 1 | Y: 1 | Last Direction Enum: 0 | Current Direction Enum: 5
+N: B X: 7 | Y: 3 | Last Direction Enum: 3 | Current Direction Enum: 5
+N: E X: 9 | Y: 1 | Last Direction Enum: 3 | Current Direction Enum: 5
+Generated Necessary Data Files for Matlab:
+Go to the DFSMatlab folder and open DFS Matlab application
+
+
+Data Cluster:
+student number: 1801492 x: 3 - y: 9
+student number: 2715672 x: 7 - y: 9
+student number: 3671781 x: 3 - y: 2
+student number: 1892617 x: 4 - y: 1
+student number: 2618261 x: 2 - y: 6
+student number: 2718927 x: 3 - y: 6
+student number: 1927182 x: 4 - y: 3
+student number: 1923736 x: 9 - y: 7
+student number: 4635672 x: 8 - y: 5
+student number: 1628364 x: 2 - y: 2
+Enter Number of K Clusters (<9): 3
+
+COG Clusters:
+x: 3.00 - y: 2.50
+x: 9.00 - y: 7.00
+x: 3.50 - y: 1.50
+Memory:
+                K: 0 | X: 3.00 | Y: 2.50
+C: 0 | Student Number: 1801492 | X: 3 | Y: 9
+C: 1 | Student Number: 2715672 | X: 7 | Y: 9
+C: 2 | Student Number: 3671781 | X: 3 | Y: 2
+C: 3 | Student Number: 1892617 | X: 4 | Y: 1
+C: 4 | Student Number: 2618261 | X: 2 | Y: 6
+C: 5 | Student Number: 2718927 | X: 3 | Y: 6
+C: 6 | Student Number: 1927182 | X: 4 | Y: 3
+C: 7 | Student Number: 1923736 | X: 9 | Y: 7
+C: 8 | Student Number: 4635672 | X: 8 | Y: 5
+C: 9 | Student Number: 1628364 | X: 2 | Y: 2
+
+                K: 0 | X: 2.83 | Y: 3.58
+C: 0 | Student Number: 3671781 | X: 3 | Y: 2
+C: 1 | Student Number: 2618261 | X: 2 | Y: 6
+C: 2 | Student Number: 2718927 | X: 3 | Y: 6
+C: 3 | Student Number: 1927182 | X: 4 | Y: 3
+C: 4 | Student Number: 1628364 | X: 2 | Y: 2
+
+                K: 1 | X: 7.20 | Y: 7.40
+C: 0 | Student Number: 1801492 | X: 3 | Y: 9
+C: 1 | Student Number: 2715672 | X: 7 | Y: 9
+C: 2 | Student Number: 1923736 | X: 9 | Y: 7
+C: 3 | Student Number: 4635672 | X: 8 | Y: 5
+
+                K: 2 | X: 3.75 | Y: 1.25
+C: 0 | Student Number: 1892617 | X: 4 | Y: 1
+
+                K: 0 | X: 2.77 | Y: 4.12
+C: 0 | Student Number: 2618261 | X: 2 | Y: 6
+C: 1 | Student Number: 2718927 | X: 3 | Y: 6
+C: 2 | Student Number: 1927182 | X: 4 | Y: 3
+C: 3 | Student Number: 1628364 | X: 2 | Y: 2
+
+                K: 1 | X: 6.84 | Y: 7.48
+C: 0 | Student Number: 1801492 | X: 3 | Y: 9
+C: 1 | Student Number: 2715672 | X: 7 | Y: 9
+C: 2 | Student Number: 1923736 | X: 9 | Y: 7
+C: 3 | Student Number: 4635672 | X: 8 | Y: 5
+
+                K: 2 | X: 3.58 | Y: 1.42
+C: 0 | Student Number: 3671781 | X: 3 | Y: 2
+C: 1 | Student Number: 1892617 | X: 4 | Y: 1
+
+                K: 0 | X: 2.59 | Y: 5.37
+C: 0 | Student Number: 2618261 | X: 2 | Y: 6
+C: 1 | Student Number: 2718927 | X: 3 | Y: 6
+
+                K: 1 | X: 6.77 | Y: 7.50
+C: 0 | Student Number: 1801492 | X: 3 | Y: 9
+C: 1 | Student Number: 2715672 | X: 7 | Y: 9
+C: 2 | Student Number: 1923736 | X: 9 | Y: 7
+C: 3 | Student Number: 4635672 | X: 8 | Y: 5
+
+                K: 2 | X: 3.32 | Y: 1.88
+C: 0 | Student Number: 1927182 | X: 4 | Y: 3
+C: 1 | Student Number: 1628364 | X: 2 | Y: 2
+C: 2 | Student Number: 3671781 | X: 3 | Y: 2
+C: 3 | Student Number: 1892617 | X: 4 | Y: 1
+
+                K: 0 | X: 2.65 | Y: 6.59
+C: 0 | Student Number: 2618261 | X: 2 | Y: 6
+C: 1 | Student Number: 2718927 | X: 3 | Y: 6
+C: 2 | Student Number: 1801492 | X: 3 | Y: 9
+
+                K: 1 | X: 7.69 | Y: 7.12
+C: 0 | Student Number: 2715672 | X: 7 | Y: 9
+C: 1 | Student Number: 1923736 | X: 9 | Y: 7
+C: 2 | Student Number: 4635672 | X: 8 | Y: 5
+
+                K: 2 | X: 3.26 | Y: 1.98
+C: 0 | Student Number: 1927182 | X: 4 | Y: 3
+C: 1 | Student Number: 1628364 | X: 2 | Y: 2
+C: 2 | Student Number: 3671781 | X: 3 | Y: 2
+C: 3 | Student Number: 1892617 | X: 4 | Y: 1
+
+Generating KCluster Data Files for Matlab...
+Generated Necessary Data Files for Matlab:
+Go to the KMeansMatlab folder and open KMeans Matlab application

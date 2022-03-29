@@ -128,6 +128,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
       % Experiment
       The environment consists of several rules for the DFS algorithm to follow. This environment creates a test environment to provide different scenarios for the DFS algorithm implementation. These rules consist of:-
       \begin{itemize}
+        \item C++ Programming Language.
         \item An ability to load different files with dynamic height and width.
         \item Ascii `42' characters are out-of-bounds.
         \item Ascii `32' characters are pathways.
@@ -138,6 +139,58 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
       \end{itemize}
 
       % Actual Results
+      \textbf{Note:} The input file to test the DFS algorithm implementation is ‘m1.txt’, and the assignment of the search node is ‘E’. The content of the input file, figure~\ref{lstlisting:dfsInput}, page~\pageref{lstlisting:dfsInput}. Results of the DFS algorithm console logs found within figure~\ref{lstlisting:dfsApplicationResults}, page~\pageref{lstlisting:dfsApplicationResults}. Graph Results using MATLAB to plot the data from the CVS file generated the DFS implementation. MATLAB DFS application enables the user to control the depth to see the program's visualisation. Check out Figure~\ref{fig:dfsMatlabGraph}, page~\pageref{fig:dfsMatlabGraph}.
+      \begin{figure}[h]
+        \begin{lstlisting}[columns=fixed]
+                  ***********
+                  *S    A   *
+                  ***** *****
+                  *C*       *
+                  * ******* *
+                  * *       *
+                  * ** ******
+                  * *B     D*
+                  * **** ** *
+                  *E       F*
+                  ***********
+        \end{lstlisting}
+        \caption{DFS Algorithm: Input File}
+        \label{lstlisting:dfsInput}
+      \end{figure}
+
+      \begin{figure}[ht]
+        \begin{lstlisting}[columns=fixed]
+          Enter filename: m1.txt
+          Enter Node to Find (Char): E
+          ***********
+          *S    A   *
+          ***** *****
+          *C*       *
+          * ******* *
+          * *       *
+          * ** ******
+          * *B     D*
+          * **** ** *
+          *E       F*
+          **********
+          N: S X: 1 | Y: 1 | Last Direction Enum: 0 | Current Direction Enum: 0
+          N: A X: 1 | Y: 6 | Last Direction Enum: 1 | Current Direction Enum: 1
+          N: S X: 1 | Y: 1 | Last Direction Enum: 0 | Current Direction Enum: 5
+          N: B X: 7 | Y: 3 | Last Direction Enum: 3 | Current Direction Enum: 5
+          N: E X: 9 | Y: 1 | Last Direction Enum: 3 | Current Direction Enum: 5
+          Generated Necessary Data Files for Matlab:
+          Go to the DFSMatlab folder and open DFS Matlab application
+        \end{lstlisting}
+        \caption{DFS Algorithm: Application Results}
+        \label{lstlisting:dfsApplicationResults}
+      \end{figure}
+
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.65\columnwidth]{Figures/fig3.jpg}
+        \caption{DFS Matlab Graph}
+        \label{fig:dfsMatlabGraph}
+      \end{figure}
 
     \section{KMeans}
       % Add mathematical formula for KCluster and Data Point sets.
@@ -180,7 +233,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
       KMeans, an unsupervised learning algorithm, works by sorting a given set of data points ($\mathcal{C}$) with a given size of K cluster points ($\mathcal{K}$) with a constraint of K length is less than half of $\mathcal{C}$ length. A random Center of Gravity (CoG) to each K cluster is assigned. This technique enables the software to start the grouping procedure. Based on the Journal Article, `Web User Clustering Analysis based on KMeans Algorithm', authored by JinHuaXu~\cite{jinhuaxu_web_2010} states that `These centroids should be placed in a cunning way because of different location causes different result. So, the better choice is to place them as much as possible far away from each other.' A way of fabricating this method into our implementation is to run a K Cluster through the randomise function; if a K Cluster $(\mathcal{X} \vee \mathcal{Y})$ CoG is the same, then randomise both $(\mathcal{X} \wedge  \mathcal{Y})$ on the K Cluster points again.
 
-      After generating the data clusters and K clusters, the next stage is to determine which data points belong to which cluster. To do this, it is a matter of finding the distance. The formula used to solve this problem, $\left||\mathcal{C} - \mathcal{K}\right||$.
+      After generating the data clusters and K clusters, the next stage determines which data points belong to which cluster. To do this, it is a matter of finding the distance. The formula used to solve this problem, $\left||\mathcal{C} - \mathcal{K}\right||$.
     \section{Visualisation Tools}
 
     \section{Terminology}
@@ -193,20 +246,20 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
       \end{itemize}
 
     \section{Appendices}
-      One of the ways to plot the data in steps within the Matlab environment within the K-Means algorithm process was creating a C-library that communicates with existing code. This process enables users to interact with the Matlab Application, changing data and watching the application plot. 
+      One of the ways to plot the data in steps within the MATLAB environment within the K-Means algorithm process was creating a C-library that communicates with existing code. This process enables users to interact with the MATLAB Application, changing data and watching the application plot. 
       
-      Using the MathWorks - Matlab Documentation, the library CLib successfully compile communication files and load EntryPoint functions. However, this method had another problem that proved time-consuming that consists of moving a \textit{string} over from the Clang to Matlab. This was tried with, but not limited to, \textit{char*} and \textit{char[]} datatypes, referring to this manual~\url{https://uk.mathworks.com/help/matlab/matlab_external/passing-arguments-to-shared-library-functions.html}. 
+      Using the MathWorks - MATLAB Documentation, the library CLib successfully compile communication files and load EntryPoint functions. However, this method had another problem that proved time-consuming that consists of moving a \textit{string} over from the Clang to MATLAB. This was tried with, but not limited to, \textit{char*} and \textit{char[]} datatypes, referring to this manual~\url{https://uk.mathworks.com/help/matlab/matlab_external/passing-arguments-to-shared-library-functions.html}. 
 
       Below is some evidencing of the test library, communicating to the \textit{MTools} namespace, \textit{Randomise} function that generates a number within a range, using an argument of a C Struct with the name of `A'.
       
       \begin{figure}[ht]
         \centering
         \includegraphics[width=1\columnwidth]{Figures/fig1.jpg}
-        \caption{C and Matlab Working}
+        \caption{C and MATLAB Working}
         \label{fig:throughput}
       \end{figure}
 
-      A updated version of the code and with an attempt to send strings over from Matlab to the C lang.
+      A updated version of the code and with an attempt to send strings over from MATLAB to the C lang.
 
       \textbf{Header:}
       \begin{lstlisting}[language=c]
