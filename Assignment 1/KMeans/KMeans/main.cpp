@@ -129,6 +129,7 @@ int main(int argc, char** argv)
         }
     cvs->CVSStart();
     delete cvs;
+
     std::cout << "Generating KCluster Data Files for Matlab..." << std::endl;
 
     // Create CVS for ClusterPoints
