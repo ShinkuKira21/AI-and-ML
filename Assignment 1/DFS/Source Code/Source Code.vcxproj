@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CVSTools\CVSTools.cpp" />
     <ClCompile Include="Deep First Search\DFS.cpp" />
     <ClCompile Include="Deep First Search\main.cpp" />
     <ClCompile Include="Deep First Search\StackController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CVSTools\CVSTools.h" />
     <ClInclude Include="Deep First Search\DFS.h" />
     <ClInclude Include="Deep First Search\FileManager.h" />
     <ClInclude Include="Deep First Search\StackController.h" />
