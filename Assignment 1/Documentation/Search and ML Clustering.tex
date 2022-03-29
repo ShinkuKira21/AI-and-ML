@@ -180,7 +180,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
       KMeans, an unsupervised learning algorithm, works by sorting a given set of data points ($\mathcal{C}$) with a given size of K cluster points ($\mathcal{K}$) with a constraint of K length is less than half of $\mathcal{C}$ length. A random Center of Gravity (CoG) to each K cluster is assigned. This technique enables the software to start the grouping procedure. Based on the Journal Article, `Web User Clustering Analysis based on KMeans Algorithm', authored by JinHuaXu~\cite{jinhuaxu_web_2010} states that `These centroids should be placed in a cunning way because of different location causes different result. So, the better choice is to place them as much as possible far away from each other.' A way of fabricating this method into our implementation is to run a K Cluster through the randomise function; if a K Cluster $(\mathcal{X} \vee \mathcal{Y})$ CoG is the same, then randomise both $(\mathcal{X} \wedge  \mathcal{Y})$ on the K Cluster points again.
 
-      After generating the data clusters and K clusters, the next stage is to determine which data points belong to which cluster. To do this, it is a matter of finding the distance. The formula used to solve this problem, $\left||\mathcal{C} - \mathcal{K}\right||$.
+      After generating the $\mathcal{C}$ data set and $\mathcal{K}$ clusters, the next stage is to determine which data points belong to which cluster. To do this, it is a matter of finding the distance and assigning the $\mathcal{C}$ data set to the closest $\mathcal{K}$ cluster. The formula used to solve this problem, $\left||\mathcal{C} - \mathcal{K}\right||$.
     \section{Visualisation Tools}
 
     \section{Terminology}
