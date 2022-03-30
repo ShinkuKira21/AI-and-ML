@@ -92,7 +92,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \pagestyle{plain}
     
     \begin{abstract}
-      
+      Artificial Intelligence and Machine Learning play a considerable part in Computer Science. Visualisation of Depth First Search and KMeans algorithms with mathematical representations and explanations. Performance testing of each algorithm gives an idea of what algorithm provides an accurate and quick method to process any given data in different scenarios.
     \end{abstract}
 
     \begin{IEEEkeywords}
@@ -100,18 +100,30 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \end{IEEEkeywords}
 
     \section{Introduction}
-      Artificial Intelligence (AI), commonly known as Machine Learning (ML), are built-up with many algorithms to provide tools to create AI and ML solutions. Research and implementation of two algorithms, Depth First Search and KMeans, to solve two given problems found within AI development.
+      Artificial Intelligence (AI), commonly known as Machine Learning (ML), are built-up with many algorithms to provide tools to create AI and ML solutions.Research and implementation of two types of algorithms, \textit{Search Algorithms} and \textit{ML Clustering Algorithms} to solve two given problems found within AI development.
 
       AI algorithms enable the developer to reuse algorithms to identify different items, generally in a recursive state. For instance, if a text file with the text stored as `Find me' was mixed with many other duplicate text files, then different algorithms could find precise information, whether it is a date and time or author's name from the file's metadata, creating a new identity to the found file.
 
-    \section{Depth First Search}
+    \section{Search Algorithms}
       % Research
-      DFS algorithm provides a method of finding a node through a tree-based search using a Stack data structure. The data structure stores new memory on top of recent memory within the Stack. A Stack only allows access to the last data added to the Stack. The algorithm selects the first node that is pre-identified before the algorithm starts. After this step, the algorithm will loop through each node, adding the latest node to the Stack, and if the node has no other pathways, the algorithm pops each node until the following path becomes available. This recursion continues until the finding of the search node. Although, if a particular node does not exist, the algorithm will not break, causing an infinite loop unless there is a `depth' variable. The process of the DFS algorithm summarised by Vigneshwaran Palanisamy's~\cite{palanisamy_novel_2020}, Journal Article, `A Novel Agent Based Depth First Search Algorithm' as quoted `DFS is about to start a source vertex s and travel the graph level by level, and it first visits all vertices which are adjacent to the s [5].' The time complexity of the DFS algorithm according to Vigneshwaran Palanisamy~\cite{palanisamy_novel_2020} `...DFS will be $\mathcal{O}(\mathcal{V}+\mathcal{E})$, where $\mathcal{V}$ is the number of vertices and $\mathcal{E}$ is the number of Edges.' It also states that if a matrix data structure is present, then it is noteworthy to measure the time complexity as $\mathcal{O}(\mathcal{V}^2)$.
-      
+      Depth First Search (DFS) algorithm provides a method of finding a node through a tree-based search, refer to Fig.~\ref{fig:treeBasedSearch} using a Stack data structure. The data structure stores new memory on top of recent memory within the Stack. A Stack only allows access to the last data added to the Stack. The algorithm selects the first node that is pre-identified before the algorithm starts. After this step, the algorithm will loop through each node, adding the latest node to the Stack, and if the node has no other pathways, the algorithm pops each node until the following path becomes available. This recursion continues until the finding of the search node. Although, if a particular node does not exist, the algorithm will not break, causing an infinite loop unless there is a `depth' variable. The process of the DFS algorithm summarised by Vigneshwaran Palanisamy's~\cite{palanisamy_novel_2020}, Journal Article, `A Novel Agent Based Depth First Search Algorithm' as quoted `DFS is about to start a source vertex s and travel the graph level by level, and it first visits all vertices which are adjacent to the s [5].' The time complexity of the DFS algorithm according to Vigneshwaran Palanisamy~\cite{palanisamy_novel_2020} `...DFS will be $\mathcal{O}(\mathcal{V}+\mathcal{E})$, where $\mathcal{V}$ is the number of vertices and $\mathcal{E}$ is the number of Edges.' It also states that if a matrix data structure is present, then it is noteworthy to measure the time complexity as $\mathcal{O}(\mathcal{V}^2)$.
+
       Dijkstra algorithm applies the Breadth-First Search (BFS) algorithm logic. The BFS algorithm functions with Queues rather than a Stack data structure. When the next available pathway becomes available, an addition of the following pathway to the queue's end, so when the objective node is not present, the algorithm will continue to the subsequent nodes on the next queue. Vigneshwaran Palanisamy~\cite{palanisamy_cluster_2020}, `Cluster Based Multi Agent System for Breadth First Search' mentions the time complexity of the Breadth-First Search is $\mathcal{O}(\mathcal{V} + \mathcal{E})$. Again, if the data structure uses a matrix data structure, then the time complexity is equal to $\mathcal{O}(\mathcal{V}^2)$.
             
       Dijkstra algorithm appears in different scenarios like AI pathfinding found in-game scenarios, where the enemy character tries finding the shortest pathway to find the main character. These algorithms weigh each pathway and select the best pathway that costs less time to complete. Instead of using queues, the Dijkstra algorithm uses weighted graphs to calculate the shortest path. According to `A Note on the Complexity of Dijkstra`s Algorithm for Graphs with Weighted Vertices' written by Michael Barbehenn~\cite{barbehenn_note_1998} `Therefore, the complexity of Dijkstra’s algorithm for vertex-based cost functions is $\mathcal{O}(|\mathcal{E}| + |\mathcal{V}| \log |\mathcal{V}|)$ using a binary
       heap implementation for the priority queue.' 
+
+      A CA-ICSE algorithm tree-based search to represent the house-style of how these search algorithms work, Fig.~\ref{fig:treeBasedSearch}. The design of the  CA-ICSE algorithm is to find a specific webpage in a similar manor of BFS and Dijikstra Algorithm by trying to find the shortest path but instead of calculating the path cost, the algorithm works by finding a similar node identical to it's current one. The following quote explains how CA-ICSE algorithm works.
+      
+      \begin{center}
+        `In addition, the CA-ICSE algorithm can be used to reduce the clustering time of cluster search engine system. For example, as Fig. 4 shows, if there are 4 nodes at each level in the meta-directory tree, then the CA-ICSE algorithm can eventually cut the search space down to 25\% of the whole search space because we only look at the most similar node and then iterate. In other words, we only look at 4 nodes at each level instead of all the nodes at each level. For this reason, this clustering algorithm can find the suitable categories (nodes) rapidly' - Chun-Wei Tsai~\cite{tsai_fast_2009}.
+      \end{center}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.65\columnwidth]{Figures/fig6.png}
+        \caption{Tree-Based Search Representation}
+        \label{fig:treeBasedSearch}
+      \end{figure}
 
       Comparing the previously noted time complexities of DFS, BFS and Dijkstra algorithms, the following formulae offers an idea of how to calculate the time of completion for each one.
       \begin{center}
@@ -126,10 +138,9 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
       With ${\mathcal{E} = 8}$ and $\mathcal{V} = 6$, DFS and BFS algorithms calculates to the time complexity of $\mathcal{O}(14)$ and Dijkstra algorithm is equal to the time complexity of $\mathcal{O}(13.42)$ rounded-up by two decimal places. DFS and BFS algorithms have similar execution times based solely on the time complexity. Dijkstra algorithm has a time complexity difference of $\mathcal{O}(0.58)$ compared to either DFS or BFS algorithms. However, due to the BFS algorithm being more memory intensive, the DFS algorithm will empty memory to find the next available pathway. This reasoning proves that even though both have the same time complexity, the BFS algorithm may prove slower than the DFS algorithm if the BFS algorithm causes the system memory to clog up. However, the BFS algorithm could prove quicker than the DFS algorithm if an infinite loop occurs.
 
       % Experiment
-      The environment consists of several rules for the DFS algorithm to follow. This environment creates a test environment to provide different scenarios for the DFS algorithm implementation. These rules consist of:-
+      For this experiment, the DFS algorithm must run in an environment capable of reading a text file with the ability of the user to enter a search node for the algorithm to find. The text file represents a tree-based search, similar to the Fig.~\ref{fig:treeBasedSearch}. The environment consists of several rules for the DFS algorithm to follow. This environment creates a test environment to provide different scenarios for the DFS algorithm implementation. These rules consist of:-
       \begin{itemize}
-        \item C++ Programming Language.
-        \item An ability to load different files with dynamic height and width.
+        \item An ability to load different files with dynamic height and width \textit{(Constrained to a 2-by-2 grid)}.
         \item Ascii `42' characters are out-of-bounds.
         \item Ascii `32' characters are pathways.
         \item Ascii `83' character is a start position.
@@ -139,7 +150,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
       \end{itemize}
 
       % Actual Results
-      \textbf{Note:} The input file to test the DFS algorithm implementation is ‘m1.txt’, and the assignment of the search node is ‘E’. The content of the input file, figure~\ref{lstlisting:dfsInput}, page~\pageref{lstlisting:dfsInput}. Results of the DFS algorithm console logs found within figure~\ref{lstlisting:dfsApplicationResults}, page~\pageref{lstlisting:dfsApplicationResults}. Graph Results using MATLAB to plot the data from the CVS file generated the DFS implementation. MATLAB DFS application enables the user to control the depth to see the program's visualisation. Check out Figure~\ref{fig:dfsMatlabGraph}, page~\pageref{fig:dfsMatlabGraph}.
+      \textbf{Note:} The input file to test the DFS algorithm implementation is ‘m1.txt’, and the assignment of the search node is ‘E’. The content of the input file, Fig.~\ref{lstlisting:dfsInput}. Results of the DFS algorithm console logs found within Fig.~\ref{lstlisting:dfsApplicationResults}. Graph Results using MATLAB to plot the data from the CVS file generated the DFS implementation. MATLAB DFS application enables the user to control the depth to see the program's visualisation. Check out Fig.~\ref{fig:dfsMatlabGraph}.
       \begin{figure}[h]
         \begin{lstlisting}[columns=fixed]
                   ***********
@@ -192,17 +203,18 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
         \label{fig:dfsMatlabGraph}
       \end{figure}
 
-    \section{KMeans}
+    \section{ML Clustering Algorithms}
       % Add mathematical formula for KCluster and Data Point sets.
       \begin{center}
         \textbf{The resprentation of the KMeans algorithm}
         \[ \mathcal{C}(n) = \left| 
-        \begin{array}{ccc}
-          \mathcal{K} & \mathcal{X} & \mathcal{Y}
-        \end{array} \right|
+          \begin{array}{ccc}
+            \mathcal{K} & \mathcal{X} & \mathcal{Y}
+          \end{array} \right|
         \]
-        \[ \mathcal{K}(n \mathcal{<} \overline{\mathcal{C}}\frac{1}{2}) = \left| \begin{array}{cc}
-          \mathcal{X} & \mathcal{Y}
+        \[ \mathcal{K}(n \mathcal{<} \overline{\mathcal{C}_{i}}\frac{1}{2}) = \left|  
+          \begin{array}{cc}
+            \mathcal{X} & \mathcal{Y}
           \end{array} \right|
         \] 
 
@@ -231,11 +243,26 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
         
       \end{center}
 
-      KMeans, an unsupervised learning algorithm, works by sorting a given set of data points ($\mathcal{C}$) with a given size of K cluster points ($\mathcal{K}$) with a constraint of K length is less than half of $\mathcal{C}$ length. A random Center of Gravity (CoG) to each K cluster is assigned. This technique enables the software to start the grouping procedure. Based on the Journal Article, `Web User Clustering Analysis based on KMeans Algorithm', authored by JinHuaXu~\cite{jinhuaxu_web_2010} states that `These centroids should be placed in a cunning way because of different location causes different result. So, the better choice is to place them as much as possible far away from each other.' A way of fabricating this method into our implementation is to run a K Cluster through the randomise function; if a K Cluster $(\mathcal{X} \vee \mathcal{Y})$ CoG is the same, then randomise both $(\mathcal{X} \wedge \mathcal{Y})$ on the K Cluster points again.
+      KMeans, an unsupervised learning algorithm, works by sorting a given set of data points ($\mathcal{C}$) with a given size of K cluster points ($\mathcal{K}$) with a constraint of $\left||\mathcal{K}_{i}\right||$ is less than half of $\left||\mathcal{C}_{i}\right||$. A random Center of Gravity (CoG) to each K cluster is assigned. This technique enables the software to start the grouping procedure. Based on the Journal Article, `Web User Clustering Analysis based on KMeans Algorithm', authored by JinHuaXu~\cite{jinhuaxu_web_2010} states that `These centroids should be placed in a cunning way because of different location causes different result. So, the better choice is to place them as much as possible far away from each other.' A way of fabricating this method into our implementation is to run a K Cluster through the randomise function; if a K Cluster $(\mathcal{X} \vee \mathcal{Y})$ CoG is the same, then randomise both $(\mathcal{X} \wedge \mathcal{Y})$ on the K Cluster points again.
 
-      After generating the $\mathcal{C}$ data set and $\mathcal{K}$ clusters, the next stage determines which data points belong to which cluster. To do this, it is a matter of finding the distance and assigning the $\mathcal{C}$ data set to the closest $\mathcal{K}$ cluster. The formula used to solve this problem, $\left||\mathcal{C} - \mathcal{K}\right||$. 
+      After generating the $\mathcal{C}$ data set and $\mathcal{K}$ clusters, the next stage determines which data points belong to which cluster. To do this, it is a matter of finding the distance and assigning the $\mathcal{C}$ data set to the closest $\mathcal{K}$ cluster. The formula used to solve this problem, $\left||\mathcal{C}_{i} - \mathcal{K}_{i}\right||$. After this stage, gather each of the $\mathcal{C}$ that corresponds with $\mathcal{K}_{i}$ and calculate the mean. Set the mean from the $\mathcal{K}_{i}$ and move on to the next one. Repeat these said steps until there is no longer a change.
 
-    \section{Visualisation Tools}
+      To visualise each step of the KMeans process generated by the KMeans implementation, a MATLAB application that enables users to control the depth provides this opportunity. Fig.~\ref{fig:kmeansMatlabGraph-1} and Fig.~\ref{fig:kmeansMatlabGraph-2} displays the two steps of $\mathcal{C}_{5}$ and $\mathcal{K}_{3}$ needed to group three clusters.
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.65\columnwidth]{Figures/fig4.png}
+        \caption{KMeans Matlab Graph - 1}
+        \label{fig:kmeansMatlabGraph-1}
+      \end{figure}
+
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.65\columnwidth]{Figures/fig5.png}
+        \caption{KMeans Matlab Graph - 2}
+        \label{fig:kmeansMatlabGraph-2}
+      \end{figure}
+
+    \section{Conclusion}
 
     \section{Terminology}
       List of terminologies used in this document:-
